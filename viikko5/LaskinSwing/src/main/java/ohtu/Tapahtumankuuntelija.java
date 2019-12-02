@@ -4,7 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
- 
+import java.util.HashMap;
+
 public class Tapahtumankuuntelija implements ActionListener {
     private JButton plus;
     private JButton miinus;
@@ -13,9 +14,12 @@ public class Tapahtumankuuntelija implements ActionListener {
     private JTextField tuloskentta;
     private JTextField syotekentta;
     private Sovelluslogiikka sovellus;
+    private HashMap<String,Komento> komennot;
  
     public Tapahtumankuuntelija(JButton plus, JButton miinus, JButton nollaa, JButton undo, JTextField tuloskentta, JTextField syotekentta) {
-        this.plus = plus;
+        komennot = new HashMap<String, Komento>();
+        komennot.put("plus", new Plus(io));
+        komennot.put("miinus", miinus);
         this.miinus = miinus;
         this.nollaa = nollaa;
         this.undo = undo;
